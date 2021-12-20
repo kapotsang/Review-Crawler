@@ -45,11 +45,13 @@ public class reviews_io {
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         String URL1 = "https://www.reviews.io/company-reviews/store/natwest";
         String URL = "https://www.reviews.io/company-reviews/store/under-u";
+        String URL2 = "https://www.reviews.io/company-reviews/store/webuy-com";
 
-       driver.get(URL1);
+       driver.get(URL2);
        driver.manage().window().maximize();
         int disable = driver.findElements(By.xpath("//span[text()='»']/..")).size();
         StringBuilder fileContent = new StringBuilder();
+        fileContent = fileContent.append("AUTHOR,"+"COMMENT,"+"RATING,"+"TIME").append("\r\n");
         while (disable == 0) {
             List<WebElement> reviews = driver.findElements(By.xpath("//div[@class=\"Review \"]"));
             String reviewId, author, timeRange,reviewComment, reviewIdXPath;
@@ -59,7 +61,7 @@ public class reviews_io {
                 reviewIdXPath= "//div[@class=\"Review \" and @data-review-id="+reviewId+"]";
                 author= driver.findElement(By.xpath(reviewIdXPath+"//a[@class=\"Review__author\"]")).getText();
                 timeRange=driver.findElement(By.xpath(reviewIdXPath+"/div[@class=\"Review__content\"]//div[@class=\"Review__dateSource\"]")).getText();
-                reviewComment=driver.findElement(By.xpath(reviewIdXPath+"/div[@class=\"Review__content\"]//span[@class=\"Review__body u-wordBreak--wordBreak\"]")).getText();
+                reviewComment=driver.findElement(By.xpath(reviewIdXPath+"/div[@class=\"Review__content\"]//span[@class=\"Review__body u-wordBreak--wordBreak\"]")).getText().replaceAll("\"","");
                 rating= driver.findElements(By.xpath(reviewIdXPath+"//i[@class=\"stars__icon  icon-full-star-01\"]")).size();
                 fileContent= fileContent.append("\""+author+"\""+","+"\""+reviewComment+"\""+","+"\""+rating+"\""+","+"\""+timeRange+"\"").append("\r\n");
                 System.out.println(author);

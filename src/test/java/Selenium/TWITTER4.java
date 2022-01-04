@@ -68,7 +68,7 @@ public class TWITTER4 {
 //                   tweetLikes = "0";             }
                 date = driver.findElement(By.xpath(reviewIdXPath + "//a[@class = \"css-4rbku5 css-18t94o4 css-901oao r-14j79pv r-1loqt21 r-1q142lx r-1qd0xha r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-3s2u2q r-qvutc0\"]")).getAttribute("aria-label");
                 statsXpath = "//div[@class=\"css-1dbjc4n r-18u37iz r-1h0z5md\"]";
-                likes = driver.findElement(By.xpath(statsXpath+"//div[@data-testid=\"like\"]")).getAttribute("aria-label").replaceAll("Likes. Like", "").replaceAll("Like.Like","");;
+                likes = driver.findElement(By.xpath(statsXpath+"//div[@data-testid=\"like\"]")).getAttribute("aria-label").replaceAll("Likes. Like", "").replaceAll("Like. Like","");;
                 retweets = driver.findElement(By.xpath(statsXpath+"//div[@data-testid=\"retweet\"]")).getAttribute("aria-label").replaceAll("Retweets. Retweet", "");;
                 replies = driver.findElement(By.xpath(statsXpath+"//div[@data-testid=\"reply\"]")).getAttribute("aria-label").replaceAll("Replies. Reply", "").replaceAll("Reply. Reply","");
                 System.out.println(username);
